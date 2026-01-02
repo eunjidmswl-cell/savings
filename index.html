@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>이피맘 | 적금 계산기 프롬프트 복사</title>
+  <meta name="description" content="클릭 한 번으로 적금 계산기 프롬프트를 복사하세요. (세전/세후 포함, 단리 고정)" />
+  <style>
+    :root{
+      --bg:#fafafa;
+      --card:#ffffff;
+      --line:#e5e7eb;
+      --text:#111827;
+      --sub:#4b5563;
+      --muted:#6b7280;
+      --shadow: 0 10px 24px rgba(17,24,39,.06);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .wrap{padding:22px;}
+    .card{
+      max-width:920px;
+      margin:0 auto;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    header{
+      padding:18px 18px 10px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:44px; height:44px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:linear-gradient(135deg,#fff1f2,#f5f3ff);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+      letter-spacing:-.5px;
+    }
+    .brand{
+      display:flex; flex-direction:column;
+      gap:2px;
+    }
+    .brand .name{font-size:16px; font-weight:800;}
+    .brand .tag{font-size:13px; color:var(--muted);}
+    .content{padding:18px;}
+    h1{font-size:18px; margin:0 0 8px;}
+    p{margin:0 0 12px; color:var(--sub);}
+    .row{display:flex; gap:12px; flex-wrap:wrap; margin:12px 0;}
+    .pill{
+      font-size:12px;
+      padding:6px 10px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      color:var(--muted);
+      background:#fff;
+    }
+    textarea{
+      width:100%;
+      min-height:340px;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid #d1d5db;
+      font-size:13px;
+      line-height:1.5;
+      background:#fcfcfd;
+      resize:vertical;
+      outline:none;
+    }
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+    button{
+      flex:1 1 220px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:0;
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
+    }
+    #copyBtn{background:#111827; color:white;}
+    #selectBtn{background:#f3f4f6; color:#111827; border:1px solid var(--line);}
+    .status{
+      margin-top:10px;
+      font-size:13px;
+      color:var(--muted);
+      min-height:20px;
+    }
+    .guide{
+      margin-top:16px;
+      border:1px dashed var(--line);
+      border-radius:14px;
+      padding:14px;
+      background:#fff;
+    }
+    .guide h2{
+      font-size:14px; margin:0 0 8px;
+    }
+    ol{margin:0; padding-left:18px; color:var(--sub);}
+    li{margin:6px 0;}
+    footer{
+      padding:14px 18px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .small{color:var(--muted);}
+    .kbd{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      font-size:12px;
+      padding:2px 6px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#f9fafb;
+      color:#374151;
+      margin:0 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="logo">이피</div>
+        <div class="brand">
+          <div class="name">이피맘 | 적금 계산기 프롬프트</div>
+          <div class="tag">클릭 한 번으로 복사 → ChatGPT에 붙여넣기만 하면 끝 🤍</div>
+        </div>
+      </header>
+
+      <div class="content">
+        <h1>📌 “세전/세후 + 실제 수령액”까지 정확히 계산해주는 프롬프트</h1>
+        <p>아래 버튼을 누르면 프롬프트가 자동으로 복사돼요. (단리 고정 / 만원 단위 숫자 입력 UX)</p>
+
+        <div class="row">
+          <div class="pill">✅ 단리 고정</div>
+          <div class="pill">✅ 세전·세후 동시 표시</div>
+          <div class="pill">✅ 이자소득세 15.4% 적용</div>
+          <div class="pill">✅ “만원 단위 숫자”로 입력</div>
+        </div>
+
+        <textarea id="prompt" readonly>You are an “Interactive Savings Calculator”.
+
+You must ask the user questions one by one, collect the required information in order,
+and only after all inputs are completed, calculate and explain the savings principal and interest.
+
+IMPORTANT:
+- All questions and answers shown to the user MUST be written in Korean.
+- This instruction is written in English, but your responses must always be in Korean.
+
+📌 Conversation Rules
+- Ask only ONE question at a time.
+- Ask the next question only after the user answers the current one.
+- If the user gives a non-numeric or unclear answer, politely ask again with examples.
+- Do NOT show any calculation results until all questions are completed.
+
+📌 Question Order (must follow exactly)
+1️⃣ Savings period (number of months)
+2️⃣ Monthly deposit amount (KRW, in units of 10,000 KRW)
+   - Ask the user to enter only a number such as: 1, 5, 10, 20
+   - Interpret the number as “만원”
+3️⃣ Annual interest rate (%)
+
+※ This savings calculation is ALWAYS based on SIMPLE INTEREST.
+※ Do NOT ask about interest type or offer alternatives.
+
+📌 Calculation Rules (Simple Interest Only)
+- Assume a fixed monthly deposit amount.
+- Convert the annual interest rate into a monthly rate.
+- Calculate total interest using simple interest.
+- Calculate pre-tax interest first.
+- Apply interest income tax of 15.4% to calculate after-tax interest.
+- Round all results to the nearest won.
+
+📌 Output Format (in Korean)
+✔ 총 납입 원금  
+✔ 세전 이자  
+✔ 이자소득세 (15.4%)  
+✔ 세후 이자  
+✔ 실제 만기 수령 금액  
+
+At the end, add one simple sentence in Korean explaining:
+“How much money the user actually receives at maturity.”
+
+📌 Tone & Style
+- Explain calmly and clearly, like a bank employee mom.
+- Use simple, friendly language that even someone bad with numbers can understand.
+- Avoid technical financial terms.
+
+Now start the calculation.
+👉 Ask the first question in Korean.</textarea>
+
+        <div class="actions">
+          <button id="copyBtn">📋 클릭하면 프롬프트 자동 복사</button>
+          <button id="selectBtn">전체 선택(수동 복사용)</button>
+        </div>
+
+        <div class="status" id="status"></div>
+
+        <div class="guide">
+          <h2>복사 후 해야 할 일 ✅</h2>
+          <ol>
+            <li>ChatGPT(또는 원하는 AI 채팅창)를 열어요.</li>
+            <li>방금 복사된 프롬프트를 그대로 붙여넣어요. <span class="kbd">붙여넣기</span></li>
+            <li>AI가 “첫 질문”을 하면, 숫자만 입력해서 계산을 시작하면 돼요 😊</li>
+          </ol>
+          <p class="small" style="margin-top:10px;">
+            예: 기간 <span class="kbd">6</span> → 월금액(만원) <span class="kbd">10</span> → 금리 <span class="kbd">6.5</span>
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        <div>업데이트: <strong>2026-01-03</strong></div>
+        <div class="small">※ 세금은 “이자소득세 15.4%” 기준으로 계산하도록 설계되어 있어요.</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const btn = document.getElementById('copyBtn');
+    const selectBtn = document.getElementById('selectBtn');
+    const ta = document.getElementById('prompt');
+    const status = document.getElementById('status');
+
+    function setStatus(msg){
+      status.textContent = msg;
+    }
+
+    selectBtn.addEventListener('click', () => {
+      ta.focus();
+      ta.select();
+      setStatus("✅ 전체 선택 완료! (원하면 지금 복사해도 돼요)");
+    });
+
+    btn.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(ta.value);
+        setStatus("✅ 복사 완료! 이제 ChatGPT에 붙여넣기만 하면 돼요 🤍");
+      }catch(e){
+        // fallback for iOS / permission issues
+        ta.focus(); ta.select();
+        const ok = document.execCommand('copy');
+        setStatus(ok ? "✅ 복사 완료! (대체 방식으로 복사했어요)" : "⚠️ 자동 복사가 막혔어요. '전체 선택' 후 수동 복사를 해주세요.");
+      }
+    });
+  </script>
+</body>
+</html>
